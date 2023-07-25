@@ -6,17 +6,30 @@ using System.Data;
 
 namespace Backend
 {
+    /// <summary>
+    /// The get details.
+    /// </summary>
     public class GetDetails
     {
+        /// <summary>
+        /// Gets a masked email.
+        /// </summary>
+        /// <param name="username">The username.</param>
+        /// <returns>A string.</returns>
         public static string GetMaskedEmail(string username)
         {
             string email = GetEmail(username);
             return email == null ? null : MaskEmail(email);
         }
 
+        /// <summary>
+        /// Get email.
+        /// </summary>
+        /// <param name="username">The username.</param>
+        /// <returns>A string.</returns>
         public static string GetEmail(string username)
         {
-            SqlDataAdapter da = new SqlDataAdapter(Sql.selectAllLoginDetails, Sql.constring);
+            SqlDataAdapter da = new SqlDataAdapter(SqlQueries.selectAllLoginDetails, SqlQueries.constring);
             SqlCommandBuilder sqlCommandBuilder = new SqlCommandBuilder(da);
             DataTable dt = new DataTable("users");
             da.Fill(dt);
@@ -33,6 +46,11 @@ namespace Backend
             }
         }
 
+        /// <summary>
+        /// Mask email.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <returns>A string.</returns>
         private static string MaskEmail(string email)
         {
             if (string.IsNullOrEmpty(email))

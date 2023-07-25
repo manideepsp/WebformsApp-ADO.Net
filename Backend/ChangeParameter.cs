@@ -1,16 +1,21 @@
 ﻿using DTO;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Backend
 {
+    /// <summary>
+    /// The change parameter.
+    /// </summary>
     public class ChangeParameter
     {
+        /// <summary>
+        /// Change password.
+        /// </summary>
+        /// <param name="user">The user.</param>
+        /// <returns>A bool.</returns>
         public bool ChangePassword(User user)
         {
             if (ChangePasswordInDB(user))
@@ -23,12 +28,17 @@ namespace Backend
             }
         }
 
+        /// <summary>
+        /// Changes a password in db.
+        /// </summary>
+        /// <param name="user">The user.</param>
+        /// <returns>A bool.</returns>
         private bool ChangePasswordInDB(User user)
         {
             try
             {
-                SqlConnection connection = new SqlConnection(Sql.constring);
-                SqlCommand command = new SqlCommand(Sql.selectWithUsername, connection);
+                SqlConnection connection = new SqlConnection(SqlQueries.constring);
+                SqlCommand command = new SqlCommand(SqlQueries.selectWithUsername, connection);
                 command.Parameters.AddWithValue("@UserName", user.UserName);
                 SqlDataAdapter adapter = new SqlDataAdapter();
                 SqlCommandBuilder sqlCommandBuilder = new SqlCommandBuilder(adapter);
@@ -42,7 +52,7 @@ namespace Backend
 
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }

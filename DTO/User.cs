@@ -1,7 +1,8 @@
-﻿using System;
-
-namespace DTO
+﻿namespace DTO
 {
+    /// <summary>
+    /// The user.
+    /// </summary>
     public class User
     {
         public string Email { get; set; }
