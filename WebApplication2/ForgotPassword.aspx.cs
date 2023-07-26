@@ -25,7 +25,7 @@ namespace WebApplication2
         /// <returns></returns>
         protected void OnClickSubmit(object sender, EventArgs e)
         {
-            Session["username"] = Request.Form["username"];
+            Session["username"] = Request.Form["username"].ToLower();
             Session["maskedEmail"] = BLL.Details.GetMaskedEmail(Session["username"].ToString());
             Session["email"] = BLL.Details.GetEmail(Session["username"].ToString());
 

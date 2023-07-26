@@ -28,7 +28,7 @@ namespace WebApplication2
         protected void OnClickSignup(object sender, EventArgs e)
         {
             User user = new User();
-            user.UserName = Request.Form["username"];
+            user.UserName = Request.Form["username"].ToLower();
             user.Password = Request.Form["password"];
             user.FirstName = Request.Form["firstname"];
             user.LastName = Request.Form["lastname"];

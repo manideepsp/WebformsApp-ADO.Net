@@ -26,6 +26,10 @@ namespace WebApplication2
         /// <returns></returns>
         protected void OnClickSubmit(object sender, EventArgs e)
         {
+            if (BLL.Mail.SendOtpMail(Session["email"].ToString()))
+            {
+                Session["Text"] = $@"Enter Otp you have recieved to your email {Session["email"].ToString()}";
+            }
             if (Session["email"].ToString() == Request.Form["email"])
             {
                 Response.Redirect("OtpVerification.aspx");

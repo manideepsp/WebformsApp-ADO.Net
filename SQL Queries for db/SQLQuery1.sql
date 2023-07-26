@@ -10,9 +10,20 @@ CREATE Table Login_Details (
 
 SELECT * FROM Login_Details;
 
+SELECT EMAIL,otp FROM Login_Details WHERE EMAIL='abc@xyz.com'
+INSERT INTO values (otp, '0000');
+
 ORDER BY LEN(Password);
 
+DECLARE @email VARCHAR(32);
+SET @email = 'abc@xyz.com';
+SELECT EMAIL,otp FROM Login_Details WHERE EMAIL = @email;
+
+
 INSERT INTO Login_Details VALUES ('name','password','test@email.com');
+
+ALTER TABLE Login_Details
+ADD CONSTRAINT DF_otp DEFAULT '0000' FOR otp;
 
 ALTER TABLE Login_Details
 ADD 

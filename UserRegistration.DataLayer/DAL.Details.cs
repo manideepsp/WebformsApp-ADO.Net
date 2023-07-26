@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
+using static System.Net.WebRequestMethods;
 
 namespace DAL
 {
@@ -42,7 +43,29 @@ namespace DAL
         /// <returns>A string.</returns>
         public string GetOtp(string mailId)
         {
-            SqlConnection connection = new SqlConnection(SqlQueries.Constring);
+            using (SqlConnection connection = new SqlConnection(SqlQueries.Constring))
+            {
+                connection.Open();
+                using (SqlDataAdapter adapter = new SqlDataAdapter(SqlQueries.SelectWithEmail, connection))
+                {
+
+                    adapter.SelectCommand.Parameters.AddWithValue("email", mailId);
+
+                    SqlCommandBuilder sqlCommandBuilder = new SqlCommandBuilder(adapter);
+
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    if (dt.Rows.Count == 1)
+                    {
+                        DataRow dr = dt.Rows[0];
+                        return dr["otp"].ToString();
+                    }
+                    return null;
+                }
+            }
+
+            /*SqlConnection connection = new SqlConnection(SqlQueries.Constring);
             SqlCommand command = new SqlCommand(SqlQueries.SelectWithEmail, connection);
             command.Parameters.AddWithValue("@email", mailId);
             SqlDataAdapter adapter = new SqlDataAdapter(command);
@@ -54,7 +77,7 @@ namespace DAL
             //DataRow[] foundRows = dt.Select($"EMAIL = '{mailId}'");
 
             DataRow dr = dt.Rows[0];
-            return dr["otp"].ToString();
+            return dr["otp"].ToString();*/
         }
 
         /// <summary>
@@ -65,7 +88,34 @@ namespace DAL
         /// <returns></returns>
         public void addOtpToDb(string otp, string mailId)
         {
-            SqlConnection connection = new SqlConnection(SqlQueries.Constring);
+
+            using (SqlConnection connection = new SqlConnection(SqlQueries.Constring))
+            {
+                connection.Open();
+                using (SqlDataAdapter adapter = new SqlDataAdapter(SqlQueries.SelectWithEmail, connection))
+                {
+
+                    adapter.SelectCommand.Parameters.AddWithValue("email", mailId);
+
+                    SqlCommandBuilder sqlCommandBuilder = new SqlCommandBuilder(adapter);
+
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    if (dt.Rows.Count == 1)
+                    {
+                        DataRow dr = dt.Rows[0];
+                        dr["otp"] = otp;
+                        adapter.Update(dt);
+                    }
+                    //return false;
+                }
+            }
+
+        }
+
+        /*
+         * SqlConnection connection = new SqlConnection(SqlQueries.Constring);
             SqlCommand command = new SqlCommand(SqlQueries.SelectWithEmail, connection);
             command.Parameters.AddWithValue("@email", mailId);
 
@@ -80,8 +130,7 @@ namespace DAL
             dr.AcceptChanges();
             dt.AcceptChanges();
             adapter.Update(dt);
-        }
-
+        */
         /// <summary>
         /// Changes a password in db.
         /// </summary>
@@ -91,23 +140,28 @@ namespace DAL
         {
             try
             {
-                SqlConnection connection = new SqlConnection(SqlQueries.Constring);
-                SqlCommand command = new SqlCommand(SqlQueries.SelectWithUsername, connection);
-                command.Parameters.AddWithValue("@UserName", user.UserName);
-                SqlDataAdapter adapter = new SqlDataAdapter();
-                SqlCommandBuilder sqlCommandBuilder = new SqlCommandBuilder(adapter);
+                using (SqlConnection connection = new SqlConnection(SqlQueries.Constring))
+                {
+                    connection.Open();
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(SqlQueries.SelectWithUsername, connection))
+                    {
+                        adapter.SelectCommand.Parameters.AddWithValue("UserName", user.UserName);
 
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
+                        SqlCommandBuilder sqlCommandBuilder = new SqlCommandBuilder(adapter);
 
-                //DataRow[] foundRows = dt.Select($"UserName = '{user.UserName}'");
-                DataRow dr = dt.Rows[0];
-                dr["Password"] = Encoding.UTF8.GetBytes(BCryptHash.HashPassword(user.Password));
-                dr.AcceptChanges();
-                dt.AcceptChanges();
-                adapter.Update(dt);
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
 
-                return true;
+                        if (dt.Rows.Count == 1)
+                        {
+                            DataRow dr = dt.Rows[0];
+                            dr["Password"] = Encoding.UTF8.GetBytes(BCryptHash.HashPassword(user.Password));
+                            adapter.Update(dt);
+                            return true;
+                        }
+                        return false;
+                    }
+                }
             }
             catch (Exception)
             {
