@@ -3,6 +3,8 @@ using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
+using System.Configuration;
+
 
 namespace DAL
 {
@@ -18,7 +20,8 @@ namespace DAL
         /// <returns>A bool.</returns>
         public bool IsLoginSuccess(User user)
         {
-            SqlConnection connection = new SqlConnection(SqlQueries.Constring);
+            string constr = ConfigurationManager.ConnectionStrings["DataBase"].ConnectionString;
+            SqlConnection connection = new SqlConnection(constr);
             SqlCommand command = new SqlCommand(SqlQueries.SelectWithUsername, connection);
             command.Parameters.AddWithValue("UserName", user.UserName);
 

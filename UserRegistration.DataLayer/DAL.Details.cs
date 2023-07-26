@@ -3,7 +3,7 @@ using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
-using static System.Net.WebRequestMethods;
+using System.Configuration;
 
 namespace DAL
 {
@@ -19,7 +19,8 @@ namespace DAL
         /// <returns>A string.</returns>
         public string GetEmail(string username)
         {
-            SqlDataAdapter da = new SqlDataAdapter(SqlQueries.SelectAllLoginDetails, SqlQueries.Constring);
+            string constr = ConfigurationManager.ConnectionStrings["DataBase"].ConnectionString;
+            SqlDataAdapter da = new SqlDataAdapter(SqlQueries.SelectAllLoginDetails, constr);
             SqlCommandBuilder sqlCommandBuilder = new SqlCommandBuilder(da);
             DataTable dt = new DataTable("users");
             da.Fill(dt);
@@ -43,7 +44,8 @@ namespace DAL
         /// <returns>A string.</returns>
         public string GetOtp(string mailId)
         {
-            using (SqlConnection connection = new SqlConnection(SqlQueries.Constring))
+            string constr = ConfigurationManager.ConnectionStrings["DataBase"].ConnectionString;
+            using (SqlConnection connection = new SqlConnection(constr))
             {
                 connection.Open();
                 using (SqlDataAdapter adapter = new SqlDataAdapter(SqlQueries.SelectWithEmail, connection))
@@ -88,8 +90,8 @@ namespace DAL
         /// <returns></returns>
         public void addOtpToDb(string otp, string mailId)
         {
-
-            using (SqlConnection connection = new SqlConnection(SqlQueries.Constring))
+            string constr = ConfigurationManager.ConnectionStrings["DataBase"].ConnectionString;
+            using (SqlConnection connection = new SqlConnection(constr))
             {
                 connection.Open();
                 using (SqlDataAdapter adapter = new SqlDataAdapter(SqlQueries.SelectWithEmail, connection))
@@ -138,9 +140,10 @@ namespace DAL
         /// <returns>A bool.</returns>
         public bool ChangePasswordInDB(User user)
         {
+            string constr = ConfigurationManager.ConnectionStrings["DataBase"].ConnectionString;
             try
             {
-                using (SqlConnection connection = new SqlConnection(SqlQueries.Constring))
+                using (SqlConnection connection = new SqlConnection(constr))
                 {
                     connection.Open();
                     using (SqlDataAdapter adapter = new SqlDataAdapter(SqlQueries.SelectWithUsername, connection))

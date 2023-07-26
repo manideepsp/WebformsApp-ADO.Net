@@ -2,6 +2,8 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
+using System.Configuration;
+
 
 namespace DAL
 {
@@ -17,7 +19,8 @@ namespace DAL
         /// <returns>A bool.</returns>
         public bool RegisterUser(User user)
         {
-            SqlDataAdapter da = new SqlDataAdapter(SqlQueries.SelectAllLoginDetails, SqlQueries.Constring);
+            string constr = ConfigurationManager.ConnectionStrings["DataBase"].ConnectionString;
+            SqlDataAdapter da = new SqlDataAdapter(SqlQueries.SelectAllLoginDetails, constr);
             SqlCommandBuilder sqlCommandBuilder = new SqlCommandBuilder(da);
             DataTable dt = new DataTable("users");
             da.Fill(dt);
