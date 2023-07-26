@@ -26,8 +26,8 @@ namespace WebApplication2
         protected void OnClickSubmit(object sender, EventArgs e)
         {
             Session["username"] = Request.Form["username"];
-            Session["maskedEmail"] = Backend.GetDetails.GetMaskedEmail(Session["username"].ToString());
-            Session["email"] = Backend.GetDetails.GetEmail(Session["username"].ToString());
+            Session["maskedEmail"] = BLL.Details.GetMaskedEmail(Session["username"].ToString());
+            Session["email"] = BLL.Details.GetEmail(Session["username"].ToString());
 
             Response.Redirect("FPEmailVerification.aspx");
         }

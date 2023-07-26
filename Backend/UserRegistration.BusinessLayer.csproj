@@ -47,20 +47,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BCryptHash.cs" />
-    <Compile Include="ChangeParameter.cs" />
-    <Compile Include="GetDetails.cs" />
-    <Compile Include="Login.cs" />
-    <Compile Include="Register.cs" />
+    <Compile Include="BLL.Password.cs" />
+    <Compile Include="BLL.Mail.cs" />
+    <Compile Include="BLL.Details.cs" />
+    <Compile Include="BLL.Login.cs" />
+    <Compile Include="BLL.RandomNumberGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL.Register.cs" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DTO\DTO.csproj">
+    <ProjectReference Include="..\DTO\UserRegistration.DTO.csproj">
       <Project>{badcad21-e0e5-4ead-a0c3-f1766d29f5a8}</Project>
-      <Name>DTO</Name>
+      <Name>UserRegistration.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UserRegistration.DataLayer\UserRegistration.DataLayer.csproj">
+      <Project>{36ccf197-dc8b-411a-9fac-04442182d6d1}</Project>
+      <Name>UserRegistration.DataLayer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

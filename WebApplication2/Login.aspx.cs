@@ -1,6 +1,6 @@
-﻿using System;
+﻿using DTO;
+using System;
 using System.Web;
-using DTO;
 
 namespace WebApplication2
 {
@@ -32,7 +32,7 @@ namespace WebApplication2
             user.UserName = Request.Form["username"];
             user.Password = Request.Form["password"];
 
-            Backend.Login login = new Backend.Login();
+            BLL.Login login = new BLL.Login();
             bool response = login.LoginUser(user);
 
             if (response)

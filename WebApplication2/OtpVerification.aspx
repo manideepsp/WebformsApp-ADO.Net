@@ -11,10 +11,10 @@
 <body>
     <form id="OtpVerificationForm" runat="server">
         <div>
-            <asp:Label ID="otplabel" runat="server" Text="" Visible="true" class="form-label">Enter Otp you have recieved to your email: </asp:Label>
+            <asp:Label ID="otplabel" runat="server" Text="" Visible="true" class="form-label"></asp:Label>
             <input id="otp" type="text" name="otp" class="form-input" placeholder="Default: 0000" required="required" />
-            <asp:Button runat="server" type="submit" OnClick="OnClickSubmit" Text="Login" CssClass="btn-primary"></asp:Button>
             <asp:Label ID="errorMessageLabel" runat="server" Text="" class="error-message" Visible="true"></asp:Label>
+            <asp:Button runat="server" type="submit" OnClick="OnClickSubmit" Text="Login" CssClass="btn-primary"></asp:Button>
         </div>
     </form>
 </body>

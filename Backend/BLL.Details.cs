@@ -1,15 +1,13 @@
-﻿using DTO;
-using System;
-using System.Data.SqlClient;
-using System.Data;
+﻿using System;
+using DAL;
 
 
-namespace Backend
+namespace BLL
 {
     /// <summary>
     /// The get details.
     /// </summary>
-    public class GetDetails
+    public class Details
     {
         /// <summary>
         /// Gets a masked email.
@@ -18,32 +16,9 @@ namespace Backend
         /// <returns>A string.</returns>
         public static string GetMaskedEmail(string username)
         {
-            string email = GetEmail(username);
+            DAL.Details obj = new DAL.Details();
+            string email = obj.GetEmail(username);
             return email == null ? null : MaskEmail(email);
-        }
-
-        /// <summary>
-        /// Get email.
-        /// </summary>
-        /// <param name="username">The username.</param>
-        /// <returns>A string.</returns>
-        public static string GetEmail(string username)
-        {
-            SqlDataAdapter da = new SqlDataAdapter(SqlQueries.selectAllLoginDetails, SqlQueries.constring);
-            SqlCommandBuilder sqlCommandBuilder = new SqlCommandBuilder(da);
-            DataTable dt = new DataTable("users");
-            da.Fill(dt);
-
-            try
-            {
-                DataRow[] foundRows = dt.Select($"UserName = '{username}'");
-                DataRow dr = foundRows[0];
-                return dr["EMAIL"].ToString();
-            }
-            catch
-            {
-                return null;
-            }
         }
 
         /// <summary>
@@ -78,6 +53,23 @@ namespace Backend
             string maskedEmail = maskedUsername + "@" + domain;
 
             return maskedEmail;
+        }
+       
+        /// <summary>
+        /// Get otp.
+        /// </summary>
+        /// <param name="mailId">The mail id.</param>
+        /// <returns>A string.</returns>
+        public static string GetOtp(string mailId)
+        {
+            DAL.Details obj = new DAL.Details();
+            return obj.GetOtp(mailId);
+        }
+
+        public static string GetEmail(string username)
+        {
+            DAL.Details obj = new DAL.Details();
+            return obj.GetEmail(username);
         }
     }
 }

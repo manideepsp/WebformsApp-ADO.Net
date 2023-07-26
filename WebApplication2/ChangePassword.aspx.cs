@@ -1,5 +1,5 @@
-﻿using System;
-using DTO;
+﻿using DTO;
+using System;
 
 namespace WebApplication2
 {
@@ -31,7 +31,7 @@ namespace WebApplication2
                 user.UserName = Session["username"].ToString();
                 user.Password = Request.Form["password"].ToString();
 
-                Backend.ChangeParameter changeParameter = new Backend.ChangeParameter();
+                BLL.Password changeParameter = new BLL.Password();
                 changeParameter.ChangePassword(user);
                 Response.Redirect("Dashboard.aspx");
             }

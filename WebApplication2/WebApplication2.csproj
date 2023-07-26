@@ -291,13 +291,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Backend\Backend.csproj">
+    <ProjectReference Include="..\Backend\UserRegistration.BusinessLayer.csproj">
       <Project>{34ebfbde-bbce-4171-822e-dfb34bc4f6ce}</Project>
-      <Name>Backend</Name>
+      <Name>UserRegistration.BusinessLayer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DTO\DTO.csproj">
+    <ProjectReference Include="..\DTO\UserRegistration.DTO.csproj">
       <Project>{badcad21-e0e5-4ead-a0c3-f1766d29f5a8}</Project>
-      <Name>DTO</Name>
+      <Name>UserRegistration.DTO</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

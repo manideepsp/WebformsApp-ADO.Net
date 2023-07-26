@@ -1,13 +1,12 @@
 ﻿using DTO;
 using System.Data;
 using System.Data.SqlClient;
-using System;
 using System.Text;
 
-namespace Backend
+namespace DAL
 {
     /// <summary>
-    /// The register.
+    /// The dll register.
     /// </summary>
     public class Register
     {
@@ -18,12 +17,12 @@ namespace Backend
         /// <returns>A bool.</returns>
         public bool RegisterUser(User user)
         {
-            SqlDataAdapter da = new SqlDataAdapter(SqlQueries.selectAllLoginDetails, SqlQueries.constring);
+            SqlDataAdapter da = new SqlDataAdapter(SqlQueries.SelectAllLoginDetails, SqlQueries.Constring);
             SqlCommandBuilder sqlCommandBuilder = new SqlCommandBuilder(da);
             DataTable dt = new DataTable("users");
             da.Fill(dt);
 
-            if (IsExist(user, dt))
+            if (IsUserExist(user, dt))
             {
                 return false; // Failed to register, user already exist
             }
@@ -44,46 +43,22 @@ namespace Backend
                 return true;
             }
         }
-
-        /// <summary>
-        /// Verify password.
-        /// </summary>
-        /// <param name="password">The password.</param>
-        /// <param name="hashedPassword">The hashed password.</param>
-        /// <returns>A bool.</returns>
-        public static bool VerifyPassword(string password, string hashedPassword)
-        {
-            // Verify the password by comparing the hashed version with the user's input
-            bool isPasswordValid = BCrypt.Net.BCrypt.Verify(password, hashedPassword);
-            return isPasswordValid;
-        }
-
-
         /// <summary>
         /// Is exist.
         /// </summary>
         /// <param name="user">The user.</param>
         /// <param name="dt">The dt.</param>
         /// <returns>A bool.</returns>
-        private bool IsExist(User user, DataTable dt)
+        private bool IsUserExist(User user, DataTable dt)
         {
-            bool flag = false;
             foreach (DataRow dr in dt.Rows)
             {
-                Console.WriteLine(dr["UserName"]);
                 if (dr["UserName"].ToString() == user.UserName)
                 {
-                    flag = true;
+                    return true; //user found
                 }
             }
-            if (flag)
-            {
-                return true; //user found
-            }
-            else
-            {
-                return false; //user not found
-            }
+            return false; //user not found
         }
     }
 }
