@@ -26,8 +26,8 @@ namespace WebApplication2
         /// <returns></returns>
         protected void OnClickSubmit(object sender, EventArgs e)
         {
-            BLL.BLLFactory factory = new BLL.BLLFactory();
-            BLL.IMail mail = factory.GetMail();
+            BLL.BLLFactory factoryObject = new BLL.BLLFactory();
+            BLL.IMail mail = factoryObject.GetMail();
 
             if (mail.SendOtpMail(Session["email"].ToString()))
             {

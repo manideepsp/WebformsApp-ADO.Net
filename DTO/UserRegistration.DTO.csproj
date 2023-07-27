@@ -46,7 +46,7 @@
   <ItemGroup>
     <Compile Include="BCryptHash.cs" />
     <Compile Include="SmtpDetails.cs" />
-    <Compile Include="SqlQueries.cs" />
+    <Compile Include="SqlCRUDOperations.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

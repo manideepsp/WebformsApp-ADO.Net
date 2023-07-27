@@ -33,8 +33,8 @@ namespace WebApplication2
             user.UserName = Request.Form["username"];
             user.Password = Request.Form["password"];
 
-            BLL.BLLFactory factory = new BLL.BLLFactory();
-            ILogin login = factory.GetLogin();
+            BLL.BLLFactory factoryObject = new BLL.BLLFactory();
+            ILogin login = factoryObject.GetLogin();
 
             bool response = login.LoginUser(user);
 

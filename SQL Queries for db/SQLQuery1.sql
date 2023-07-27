@@ -1,5 +1,7 @@
 create database Ashish_db;
 
+
+
 use Ashish_db;
 
 CREATE Table Login_Details (

@@ -20,7 +20,7 @@ namespace DAL
         public bool RegisterUser(User user)
         {
             string constr = ConfigurationManager.ConnectionStrings["Ashish_db"].ConnectionString;
-            SqlDataAdapter da = new SqlDataAdapter(SqlQueries.SelectAllLoginDetails, constr);
+            SqlDataAdapter da = new SqlDataAdapter(SqlCRUDOperations.SelectAllLoginDetails, constr);
             SqlCommandBuilder sqlCommandBuilder = new SqlCommandBuilder(da);
             DataTable dt = new DataTable("users");
             da.Fill(dt);

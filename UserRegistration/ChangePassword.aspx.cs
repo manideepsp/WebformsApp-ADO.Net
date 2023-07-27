@@ -13,10 +13,8 @@ namespace WebApplication2
         /// <param name="sender">The sender.</param>
         /// <param name="e">The e.</param>
         /// <returns></returns>
-        protected void Page_Load(object sender, EventArgs e)
-        {
+        protected void Page_Load(object sender, EventArgs e){}
 
-        }
         /// <summary>
         /// Ons a click submit.
         /// </summary>

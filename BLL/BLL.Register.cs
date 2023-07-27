@@ -14,8 +14,8 @@ namespace BLL
         /// <returns>A bool.</returns>
         public bool RegisterUser(User user)
         {
-            DAL.DALFactory factory = new DAL.DALFactory();
-            DAL.IRegister register = factory.GetRegister();
+            DAL.DALFactory factoryObject = new DAL.DALFactory();
+            DAL.IRegister register = factoryObject.GetRegister();
 
             return register.RegisterUser(user);
         }

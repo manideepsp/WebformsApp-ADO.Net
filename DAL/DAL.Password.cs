@@ -24,7 +24,7 @@ namespace DAL
                 using (SqlConnection connection = new SqlConnection(constr))
                 {
                     connection.Open();
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(SqlQueries.SelectWithUsername, connection))
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(SqlCRUDOperations.SelectWithUsername, connection))
                     {
                         adapter.SelectCommand.Parameters.AddWithValue("UserName", user.UserName);
 

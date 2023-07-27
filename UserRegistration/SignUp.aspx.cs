@@ -14,10 +14,7 @@ namespace WebApplication2
         /// <param name="sender">The sender.</param>
         /// <param name="e">The e.</param>
         /// <returns></returns>
-        protected void Page_Load(object sender, EventArgs e)
-        {
-
-        }
+        protected void Page_Load(object sender, EventArgs e){}
 
         /// <summary>
         /// Ons a click signup.
@@ -35,8 +32,8 @@ namespace WebApplication2
             user.ConfirmPassword = Request.Form["confirmpassword"];
             user.Email = Request.Form["email"];
 
-            BLL.BLLFactory factory = new BLL.BLLFactory();
-            IRegister register = factory.GetRegister();
+            BLL.BLLFactory factoryObject = new BLL.BLLFactory();
+            IRegister register = factoryObject.GetRegister();
 
             bool response = register.RegisterUser(user);
             if (response)

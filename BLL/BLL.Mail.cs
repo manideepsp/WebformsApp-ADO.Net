@@ -11,8 +11,8 @@ namespace BLL
         {
             string otp = RandomNumberGenerator.GenerateRandom6DigitNumber().ToString();
 
-            DAL.DALFactory factory = new DAL.DALFactory();
-            DAL.IDetails details = factory.GetDetails();
+            DAL.DALFactory factoryObject = new DAL.DALFactory();
+            DAL.IDetails details = factoryObject.GetDetails();
 
             details.AddOtpToDb(otp, mailId);
             string subject = "OTP for Login";

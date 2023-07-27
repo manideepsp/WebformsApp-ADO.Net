@@ -18,7 +18,7 @@ namespace DAL
         public string GetEmail(string username)
         {
             string constr = ConfigurationManager.ConnectionStrings["Ashish_db"].ConnectionString;
-            SqlDataAdapter adapter = new SqlDataAdapter(SqlQueries.SelectWithUsername, constr);
+            SqlDataAdapter adapter = new SqlDataAdapter(SqlCRUDOperations.SelectWithUsername, constr);
             adapter.SelectCommand.Parameters.AddWithValue("UserName", username);
             SqlCommandBuilder sqlCommandBuilder = new SqlCommandBuilder(adapter);
             DataTable dt = new DataTable("users");
@@ -47,7 +47,7 @@ namespace DAL
             using (SqlConnection connection = new SqlConnection(constr))
             {
                 connection.Open();
-                using (SqlDataAdapter adapter = new SqlDataAdapter(SqlQueries.SelectWithEmail, connection))
+                using (SqlDataAdapter adapter = new SqlDataAdapter(SqlCRUDOperations.SelectWithEmail, connection))
                 {
 
                     adapter.SelectCommand.Parameters.AddWithValue("email", mailId);
@@ -93,7 +93,7 @@ namespace DAL
             using (SqlConnection connection = new SqlConnection(constr))
             {
                 connection.Open();
-                using (SqlDataAdapter adapter = new SqlDataAdapter(SqlQueries.SelectWithEmail, connection))
+                using (SqlDataAdapter adapter = new SqlDataAdapter(SqlCRUDOperations.SelectWithEmail, connection))
                 {
 
                     adapter.SelectCommand.Parameters.AddWithValue("email", mailId);

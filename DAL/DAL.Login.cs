@@ -22,7 +22,7 @@ namespace DAL
         {
             string constr = ConfigurationManager.ConnectionStrings["Ashish_db"].ConnectionString;
             SqlConnection connection = new SqlConnection(constr);
-            SqlCommand command = new SqlCommand(SqlQueries.SelectWithUsername, connection);
+            SqlCommand command = new SqlCommand(SqlCRUDOperations.SelectWithUsername, connection);
             command.Parameters.AddWithValue("UserName", user.UserName);
 
             SqlDataAdapter da = new SqlDataAdapter(command);

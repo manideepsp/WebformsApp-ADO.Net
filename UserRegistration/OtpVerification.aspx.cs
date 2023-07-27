@@ -26,8 +26,8 @@ namespace WebApplication2
         /// <returns></returns>
         protected void OnClickSubmit(object sender, EventArgs e)
         {
-            BLL.BLLFactory factory = new BLL.BLLFactory();
-            BLL.IDetails details = factory.GetOtpDetails();
+            BLL.BLLFactory factoryObject = new BLL.BLLFactory();
+            BLL.IDetails details = factoryObject.GetOtpDetails();
 
             if (Request.Form["otp"].ToString().Trim() == details.GetDetails(Session["email"].ToString(), "otp"))
             {
