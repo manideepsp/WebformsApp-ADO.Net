@@ -1,9 +1,9 @@
 ﻿using DTO;
 using System;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
-using System.Configuration;
 
 
 namespace DAL
@@ -20,7 +20,7 @@ namespace DAL
         /// <returns>A bool.</returns>
         public bool IsLoginSuccess(User user)
         {
-            string constr = ConfigurationManager.ConnectionStrings["DataBase"].ConnectionString;
+            string constr = ConfigurationManager.ConnectionStrings["Ashish_db"].ConnectionString;
             SqlConnection connection = new SqlConnection(constr);
             SqlCommand command = new SqlCommand(SqlQueries.SelectWithUsername, connection);
             command.Parameters.AddWithValue("UserName", user.UserName);

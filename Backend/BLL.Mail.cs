@@ -1,14 +1,13 @@
-﻿using System;
-using DTO;
+﻿using DTO;
+using System;
 using System.Net; // ToMail
 using System.Net.Mail;
-using DAL;
 
 namespace BLL
 {
-    public static class Mail
+    internal class Mail : IMail
     {
-        public static bool SendOtpMail(string mailId)
+        public bool SendOtpMail(string mailId)
         {
             string otp = RandomNumberGenerator.GenerateRandom6DigitNumber().ToString();
             DAL.Details obj = new DAL.Details();

@@ -1,9 +1,9 @@
 ﻿using DTO;
 using System;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
-using System.Configuration;
 
 namespace DAL
 {
@@ -19,17 +19,18 @@ namespace DAL
         /// <returns>A string.</returns>
         public string GetEmail(string username)
         {
-            string constr = ConfigurationManager.ConnectionStrings["DataBase"].ConnectionString;
-            SqlDataAdapter da = new SqlDataAdapter(SqlQueries.SelectAllLoginDetails, constr);
-            SqlCommandBuilder sqlCommandBuilder = new SqlCommandBuilder(da);
+            string constr = ConfigurationManager.ConnectionStrings["Ashish_db"].ConnectionString;
+            SqlDataAdapter adapter = new SqlDataAdapter(SqlQueries.SelectWithUsername, constr);
+            adapter.SelectCommand.Parameters.AddWithValue("UserName", username);
+            SqlCommandBuilder sqlCommandBuilder = new SqlCommandBuilder(adapter);
             DataTable dt = new DataTable("users");
-            da.Fill(dt);
+            adapter.Fill(dt);
 
             try
             {
-                //DataRow[] foundRows = dt.Select($"UserName = '{username}'");
+                DataRow[] foundRows = dt.Select($"UserName = '{username}'");
 
-                DataRow dr = dt.Rows[0];
+                DataRow dr = foundRows[0];
                 return dr["EMAIL"].ToString();
             }
             catch
@@ -44,7 +45,7 @@ namespace DAL
         /// <returns>A string.</returns>
         public string GetOtp(string mailId)
         {
-            string constr = ConfigurationManager.ConnectionStrings["DataBase"].ConnectionString;
+            string constr = ConfigurationManager.ConnectionStrings["Ashish_db"].ConnectionString;
             using (SqlConnection connection = new SqlConnection(constr))
             {
                 connection.Open();
@@ -90,7 +91,7 @@ namespace DAL
         /// <returns></returns>
         public void addOtpToDb(string otp, string mailId)
         {
-            string constr = ConfigurationManager.ConnectionStrings["DataBase"].ConnectionString;
+            string constr = ConfigurationManager.ConnectionStrings["Ashish_db"].ConnectionString;
             using (SqlConnection connection = new SqlConnection(constr))
             {
                 connection.Open();
@@ -140,7 +141,7 @@ namespace DAL
         /// <returns>A bool.</returns>
         public bool ChangePasswordInDB(User user)
         {
-            string constr = ConfigurationManager.ConnectionStrings["DataBase"].ConnectionString;
+            string constr = ConfigurationManager.ConnectionStrings["Ashish_db"].ConnectionString;
             try
             {
                 using (SqlConnection connection = new SqlConnection(constr))

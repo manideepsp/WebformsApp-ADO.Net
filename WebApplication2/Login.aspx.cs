@@ -1,4 +1,5 @@
-﻿using DTO;
+﻿using BLL;
+using DTO;
 using System;
 using System.Web;
 
@@ -32,7 +33,9 @@ namespace WebApplication2
             user.UserName = Request.Form["username"];
             user.Password = Request.Form["password"];
 
-            BLL.Login login = new BLL.Login();
+            BLL.BLLFactory factory = new BLL.BLLFactory();
+            ILogin login = factory.GetLogin();
+
             bool response = login.LoginUser(user);
 
             if (response)

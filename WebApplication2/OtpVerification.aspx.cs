@@ -1,5 +1,4 @@
-﻿using BLL;
-using System;
+﻿using System;
 
 namespace WebApplication2
 {
@@ -27,7 +26,10 @@ namespace WebApplication2
         /// <returns></returns>
         protected void OnClickSubmit(object sender, EventArgs e)
         {
-            if (Request.Form["otp"].ToString().Trim() == BLL.Details.GetOtp(Session["email"].ToString()))
+            BLL.BLLFactory factory = new BLL.BLLFactory();
+            BLL.IDetails details = factory.GetOtpDetails();
+
+            if (Request.Form["otp"].ToString().Trim() == details.GetDetails(Session["email"].ToString(), "otp"))
             {
                 Response.Redirect("ChangePassword.aspx");
             }

@@ -1,20 +1,41 @@
 ﻿using System;
-using DAL;
-
 
 namespace BLL
 {
-    /// <summary>
-    /// The get details.
-    /// </summary>
-    public class Details
+    /// <inheritdoc/>
+    /// <seealso cref="BLL.IEmailDetails"/>
+    internal class EmailDetails : IEmailDetails, IDetails
     {
+        public string GetDetails(string username, string kind)
+        {
+            if (kind == "maskedemail")
+            {
+                return GetMaskedEmail(username);
+            }
+            if (kind == "email")
+            {
+                return GetEmail(username);
+            }
+            else return null;
+        }
+
+        /// <summary>
+        /// Get email.
+        /// </summary>
+        /// <param name="username">The username.</param>
+        /// <returns>A string.</returns>
+        public string GetEmail(string username)
+        {
+            DAL.Details obj = new DAL.Details();
+            return obj.GetEmail(username);
+        }
+
         /// <summary>
         /// Gets a masked email.
         /// </summary>
         /// <param name="username">The username.</param>
         /// <returns>A string.</returns>
-        public static string GetMaskedEmail(string username)
+        public string GetMaskedEmail(string username)
         {
             DAL.Details obj = new DAL.Details();
             string email = obj.GetEmail(username);
@@ -26,7 +47,7 @@ namespace BLL
         /// </summary>
         /// <param name="email">The email.</param>
         /// <returns>A string.</returns>
-        private static string MaskEmail(string email)
+        private string MaskEmail(string email)
         {
             if (string.IsNullOrEmpty(email))
             {
@@ -53,23 +74,6 @@ namespace BLL
             string maskedEmail = maskedUsername + "@" + domain;
 
             return maskedEmail;
-        }
-       
-        /// <summary>
-        /// Get otp.
-        /// </summary>
-        /// <param name="mailId">The mail id.</param>
-        /// <returns>A string.</returns>
-        public static string GetOtp(string mailId)
-        {
-            DAL.Details obj = new DAL.Details();
-            return obj.GetOtp(mailId);
-        }
-
-        public static string GetEmail(string username)
-        {
-            DAL.Details obj = new DAL.Details();
-            return obj.GetEmail(username);
         }
     }
 }

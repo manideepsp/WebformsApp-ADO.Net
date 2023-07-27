@@ -31,8 +31,10 @@ namespace WebApplication2
                 user.UserName = Session["username"].ToString();
                 user.Password = Request.Form["password"].ToString();
 
-                BLL.Password changeParameter = new BLL.Password();
-                changeParameter.ChangePassword(user);
+                BLL.BLLFactory factoryObject = new BLL.BLLFactory();
+                BLL.IPassword password = factoryObject.GetPassword();
+
+                password.ChangePassword(user);
                 Response.Redirect("Dashboard.aspx");
             }
             else

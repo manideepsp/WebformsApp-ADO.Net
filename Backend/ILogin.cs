@@ -3,19 +3,15 @@
 namespace BLL
 {
     /// <summary>
-    /// The login.
+    /// An i login interface.
     /// </summary>
-    internal class Login : ILogin
+    public interface ILogin
     {
         /// <summary>
         /// Login user.
         /// </summary>
         /// <param name="user">The user.</param>
         /// <returns>A bool.</returns>
-        public bool LoginUser(User user)
-        {
-            DAL.Login obj = new DAL.Login();
-            return obj.IsLoginSuccess(user);
-        }
+        bool LoginUser(User user);
     }
 }

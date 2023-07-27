@@ -26,7 +26,10 @@ namespace WebApplication2
         /// <returns></returns>
         protected void OnClickSubmit(object sender, EventArgs e)
         {
-            if (BLL.Mail.SendOtpMail(Session["email"].ToString()))
+            BLL.BLLFactory factory = new BLL.BLLFactory();
+            BLL.IMail mail = factory.GetMail();
+
+            if (mail.SendOtpMail(Session["email"].ToString()))
             {
                 Session["Text"] = $@"Enter Otp you have recieved to your email {Session["email"].ToString()}";
             }

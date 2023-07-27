@@ -10,6 +10,7 @@ CREATE Table Login_Details (
 
 SELECT * FROM Login_Details;
 
+
 SELECT EMAIL,otp FROM Login_Details WHERE EMAIL='abc@xyz.com'
 INSERT INTO values (otp, '0000');
 

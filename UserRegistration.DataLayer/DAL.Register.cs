@@ -1,8 +1,8 @@
 ﻿using DTO;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
-using System.Configuration;
 
 
 namespace DAL
@@ -19,7 +19,7 @@ namespace DAL
         /// <returns>A bool.</returns>
         public bool RegisterUser(User user)
         {
-            string constr = ConfigurationManager.ConnectionStrings["DataBase"].ConnectionString;
+            string constr = ConfigurationManager.ConnectionStrings["Ashish_db"].ConnectionString;
             SqlDataAdapter da = new SqlDataAdapter(SqlQueries.SelectAllLoginDetails, constr);
             SqlCommandBuilder sqlCommandBuilder = new SqlCommandBuilder(da);
             DataTable dt = new DataTable("users");

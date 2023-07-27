@@ -1,12 +1,11 @@
 ﻿using DTO;
-using DAL;
 
 namespace BLL
 {
     /// <summary>
     /// The change parameter.
     /// </summary>
-    public class Password
+    internal class Password : IPassword
     {
         /// <summary>
         /// Change password.

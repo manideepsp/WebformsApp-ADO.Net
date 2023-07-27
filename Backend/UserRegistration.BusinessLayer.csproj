@@ -49,9 +49,18 @@
   <ItemGroup>
     <Compile Include="BLL.Password.cs" />
     <Compile Include="BLL.Mail.cs" />
-    <Compile Include="BLL.Details.cs" />
+    <Compile Include="BLL.EmailDetails.cs" />
     <Compile Include="BLL.Login.cs" />
     <Compile Include="BLL.RandomNumberGenerator.cs" />
+    <Compile Include="BLLFactory.cs" />
+    <Compile Include="IDetails.cs" />
+    <Compile Include="ILogin.cs" />
+    <Compile Include="IMail.cs" />
+    <Compile Include="IPassword.cs" />
+    <Compile Include="IOtpDetails.cs" />
+    <Compile Include="IRegister.cs" />
+    <Compile Include="BLL.OtpDetails.cs" />
+    <Compile Include="IEmailDetails.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

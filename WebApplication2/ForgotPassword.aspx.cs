@@ -25,9 +25,12 @@ namespace WebApplication2
         /// <returns></returns>
         protected void OnClickSubmit(object sender, EventArgs e)
         {
+            BLL.BLLFactory factory = new BLL.BLLFactory();
+            BLL.IDetails emailDetails = factory.GetEmailDetails();
+
             Session["username"] = Request.Form["username"].ToLower();
-            Session["maskedEmail"] = BLL.Details.GetMaskedEmail(Session["username"].ToString());
-            Session["email"] = BLL.Details.GetEmail(Session["username"].ToString());
+            Session["maskedEmail"] = emailDetails.GetDetails(Session["username"].ToString(), "maskedemail");
+            Session["email"] = emailDetails.GetDetails(Session["username"].ToString(), "email");
 
             Response.Redirect("FPEmailVerification.aspx");
         }

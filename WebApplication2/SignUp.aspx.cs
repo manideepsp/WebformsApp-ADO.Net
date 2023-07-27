@@ -35,7 +35,9 @@ namespace WebApplication2
             user.ConfirmPassword = Request.Form["confirmpassword"];
             user.Email = Request.Form["email"];
 
-            Register register = new Register();
+            BLL.BLLFactory factory = new BLL.BLLFactory();
+            IRegister register = factory.GetRegister();
+
             bool response = register.RegisterUser(user);
             if (response)
             {
