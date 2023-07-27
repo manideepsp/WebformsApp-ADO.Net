@@ -12,8 +12,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WebApplication2</RootNamespace>
-    <AssemblyName>WebApplication2</AssemblyName>
+    <RootNamespace>UserRegistration</RootNamespace>
+    <AssemblyName>UserRegistration</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -247,6 +247,11 @@
       <DependentUpon>OtpVerification.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="SignUp.aspx.cs">
       <DependentUpon>SignUp.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -291,9 +296,19 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Backend\UserRegistration.BusinessLayer.csproj">
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BLL\UserRegistration.BusinessLayer.csproj">
       <Project>{34ebfbde-bbce-4171-822e-dfb34bc4f6ce}</Project>
       <Name>UserRegistration.BusinessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\UserRegistration.DataLayer.csproj">
+      <Project>{36ccf197-dc8b-411a-9fac-04442182d6d1}</Project>
+      <Name>UserRegistration.DataLayer</Name>
     </ProjectReference>
     <ProjectReference Include="..\DTO\UserRegistration.DTO.csproj">
       <Project>{badcad21-e0e5-4ead-a0c3-f1766d29f5a8}</Project>

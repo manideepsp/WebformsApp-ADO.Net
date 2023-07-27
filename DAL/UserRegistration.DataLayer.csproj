@@ -57,13 +57,13 @@
     <Compile Include="DAL.Register.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\DTO\UserRegistration.DTO.csproj">
       <Project>{badcad21-e0e5-4ead-a0c3-f1766d29f5a8}</Project>
       <Name>UserRegistration.DTO</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -5,11 +5,11 @@ VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserRegistration.DTO", "DTO\UserRegistration.DTO.csproj", "{BADCAD21-E0E5-4EAD-A0C3-F1766D29F5A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserRegistration.BusinessLayer", "Backend\UserRegistration.BusinessLayer.csproj", "{34EBFBDE-BBCE-4171-822E-DFB34BC4F6CE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserRegistration.BusinessLayer", "BLL\UserRegistration.BusinessLayer.csproj", "{34EBFBDE-BBCE-4171-822E-DFB34BC4F6CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication2", "WebApplication2\WebApplication2.csproj", "{BEAD81C7-4583-4A15-82F2-66133989443D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserRegistration.DataLayer", "DAL\UserRegistration.DataLayer.csproj", "{36CCF197-DC8B-411A-9FAC-04442182D6D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserRegistration.DataLayer", "UserRegistration.DataLayer\UserRegistration.DataLayer.csproj", "{36CCF197-DC8B-411A-9FAC-04442182D6D1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserRegistration", "UserRegistration\UserRegistration.csproj", "{BEAD81C7-4583-4A15-82F2-66133989443D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,14 +25,14 @@ Global
 		{34EBFBDE-BBCE-4171-822E-DFB34BC4F6CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34EBFBDE-BBCE-4171-822E-DFB34BC4F6CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34EBFBDE-BBCE-4171-822E-DFB34BC4F6CE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BEAD81C7-4583-4A15-82F2-66133989443D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BEAD81C7-4583-4A15-82F2-66133989443D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BEAD81C7-4583-4A15-82F2-66133989443D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BEAD81C7-4583-4A15-82F2-66133989443D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{36CCF197-DC8B-411A-9FAC-04442182D6D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{36CCF197-DC8B-411A-9FAC-04442182D6D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36CCF197-DC8B-411A-9FAC-04442182D6D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36CCF197-DC8B-411A-9FAC-04442182D6D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEAD81C7-4583-4A15-82F2-66133989443D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEAD81C7-4583-4A15-82F2-66133989443D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEAD81C7-4583-4A15-82F2-66133989443D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEAD81C7-4583-4A15-82F2-66133989443D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

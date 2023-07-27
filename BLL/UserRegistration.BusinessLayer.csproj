@@ -68,13 +68,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DAL\UserRegistration.DataLayer.csproj">
+      <Project>{36ccf197-dc8b-411a-9fac-04442182d6d1}</Project>
+      <Name>UserRegistration.DataLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DTO\UserRegistration.DTO.csproj">
       <Project>{badcad21-e0e5-4ead-a0c3-f1766d29f5a8}</Project>
       <Name>UserRegistration.DTO</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\UserRegistration.DataLayer\UserRegistration.DataLayer.csproj">
-      <Project>{36ccf197-dc8b-411a-9fac-04442182d6d1}</Project>
-      <Name>UserRegistration.DataLayer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

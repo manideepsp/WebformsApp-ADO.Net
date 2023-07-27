@@ -16,7 +16,7 @@ namespace DAL
         /// </summary>
         /// <param name="user">The user.</param>
         /// <returns>A bool.</returns>
-        internal bool ChangePasswordInDB(User user)
+        public bool ChangePasswordInDB(User user)
         {
             string constr = ConfigurationManager.ConnectionStrings["Ashish_db"].ConnectionString;
             try
