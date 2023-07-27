@@ -11,7 +11,7 @@ namespace DAL
     /// <summary>
     /// The dll login.
     /// </summary>
-    public class Login
+    internal class Login : ILogin
     {
         /// <summary>
         /// Is login success.

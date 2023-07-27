@@ -20,8 +20,10 @@
         /// <returns>A string.</returns>
         public string GetOtp(string mailId)
         {
-            DAL.Details obj = new DAL.Details();
-            return obj.GetOtp(mailId);
+            DAL.DALFactory factory = new DAL.DALFactory();
+            DAL.IDetails details = factory.GetDetails();
+
+            return details.GetOtp(mailId);
         }
     }
 }

@@ -47,6 +47,12 @@
   <ItemGroup>
     <Compile Include="DAL.Details.cs" />
     <Compile Include="DAL.Login.cs" />
+    <Compile Include="DALFactory.cs" />
+    <Compile Include="IDetails.cs" />
+    <Compile Include="ILogin.cs" />
+    <Compile Include="IPassword.cs" />
+    <Compile Include="DAL.Password.cs" />
+    <Compile Include="IRegister.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DAL.Register.cs" />
   </ItemGroup>

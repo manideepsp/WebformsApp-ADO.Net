@@ -10,8 +10,11 @@ namespace BLL
         public bool SendOtpMail(string mailId)
         {
             string otp = RandomNumberGenerator.GenerateRandom6DigitNumber().ToString();
-            DAL.Details obj = new DAL.Details();
-            obj.addOtpToDb(otp, mailId);
+
+            DAL.DALFactory factory = new DAL.DALFactory();
+            DAL.IDetails details = factory.GetDetails();
+
+            details.AddOtpToDb(otp, mailId);
             string subject = "OTP for Login";
             string body = $"Your OTP is: {otp}";
 

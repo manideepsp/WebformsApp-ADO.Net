@@ -1,16 +1,14 @@
 ﻿using DTO;
-using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Text;
 
 namespace DAL
 {
     /// <summary>
     /// The class 1.
     /// </summary>
-    public class Details
+    internal class Details : IDetails
     {
         /// <summary>
         /// Get email.
@@ -89,7 +87,7 @@ namespace DAL
         /// <param name="otp">The otp.</param>
         /// <param name="mailId">The mail id.</param>
         /// <returns></returns>
-        public void addOtpToDb(string otp, string mailId)
+        public void AddOtpToDb(string otp, string mailId)
         {
             string constr = ConfigurationManager.ConnectionStrings["Ashish_db"].ConnectionString;
             using (SqlConnection connection = new SqlConnection(constr))
@@ -114,7 +112,6 @@ namespace DAL
                     //return false;
                 }
             }
-
         }
 
         /*
@@ -134,43 +131,6 @@ namespace DAL
             dt.AcceptChanges();
             adapter.Update(dt);
         */
-        /// <summary>
-        /// Changes a password in db.
-        /// </summary>
-        /// <param name="user">The user.</param>
-        /// <returns>A bool.</returns>
-        public bool ChangePasswordInDB(User user)
-        {
-            string constr = ConfigurationManager.ConnectionStrings["Ashish_db"].ConnectionString;
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(constr))
-                {
-                    connection.Open();
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(SqlQueries.SelectWithUsername, connection))
-                    {
-                        adapter.SelectCommand.Parameters.AddWithValue("UserName", user.UserName);
 
-                        SqlCommandBuilder sqlCommandBuilder = new SqlCommandBuilder(adapter);
-
-                        DataTable dt = new DataTable();
-                        adapter.Fill(dt);
-
-                        if (dt.Rows.Count == 1)
-                        {
-                            DataRow dr = dt.Rows[0];
-                            dr["Password"] = Encoding.UTF8.GetBytes(BCryptHash.HashPassword(user.Password));
-                            adapter.Update(dt);
-                            return true;
-                        }
-                        return false;
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
     }
 }

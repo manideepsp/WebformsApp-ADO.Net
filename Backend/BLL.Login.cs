@@ -14,8 +14,10 @@ namespace BLL
         /// <returns>A bool.</returns>
         public bool LoginUser(User user)
         {
-            DAL.Login obj = new DAL.Login();
-            return obj.IsLoginSuccess(user);
+            DAL.DALFactory factory = new DAL.DALFactory();
+            DAL.ILogin login = factory.GetLogin();
+
+            return login.IsLoginSuccess(user);
         }
     }
 }

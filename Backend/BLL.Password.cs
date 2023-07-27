@@ -14,8 +14,10 @@ namespace BLL
         /// <returns>A bool.</returns>
         public bool ChangePassword(User user)
         {
-            DAL.Details dLLDetails = new DAL.Details();
-            if (dLLDetails.ChangePasswordInDB(user))
+            DAL.DALFactory factory = new DAL.DALFactory();
+            DAL.IPassword password = factory.GetPassword();
+
+            if (password.ChangePasswordInDB(user))
             {
                 return true;
             }

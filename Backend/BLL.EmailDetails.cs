@@ -26,8 +26,10 @@ namespace BLL
         /// <returns>A string.</returns>
         public string GetEmail(string username)
         {
-            DAL.Details obj = new DAL.Details();
-            return obj.GetEmail(username);
+            DAL.DALFactory factory = new DAL.DALFactory();
+            DAL.IDetails details = factory.GetDetails();
+
+            return details.GetEmail(username);
         }
 
         /// <summary>
@@ -37,8 +39,10 @@ namespace BLL
         /// <returns>A string.</returns>
         public string GetMaskedEmail(string username)
         {
-            DAL.Details obj = new DAL.Details();
-            string email = obj.GetEmail(username);
+            DAL.DALFactory factory = new DAL.DALFactory();
+            DAL.IDetails details = factory.GetDetails();
+
+            string email = details.GetEmail(username);
             return email == null ? null : MaskEmail(email);
         }
 

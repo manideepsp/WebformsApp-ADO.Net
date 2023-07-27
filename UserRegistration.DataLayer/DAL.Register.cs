@@ -10,7 +10,7 @@ namespace DAL
     /// <summary>
     /// The dll register.
     /// </summary>
-    public class Register
+    internal class Register : IRegister
     {
         /// <summary>
         /// Register user.
